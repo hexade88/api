@@ -14,7 +14,7 @@ app.get("/get_servers", (req, res) => {
     methods.getServers(req, res); 
 });
 
-app.get("/get_webhook", (req, res) => {
+app.post("/get_webhook", (req, res) => {
     methods.webhook(req, res);
 });
 
