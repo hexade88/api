@@ -18,4 +18,12 @@ app.post("/get_webhook", (req, res) => {
     methods.webhook(req, res);
 });
 
+app.post("/dealfields", (req, res) => {
+    methods.dealfields(req, res);
+});
+
+app.post("/setdealfields", (req, res) => {
+    methods.setdealfields(req, res);
+});
+
 app.listen(5002, () => { console.log("Server api started on port 5002"); });

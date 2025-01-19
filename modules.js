@@ -58,7 +58,41 @@ const webhook = (req, res) => {
     });
 };
 
+const dealfields = (req, res) => {
+    const {source} = req.body;
+    var urll = '';
+    if(source == 0 ){ urll = `${webhook_servers.SOURCE_HOOK}${methods.get_user_deal_fields}` }
+    else { urll = `${webhook_servers.RECEIVE_HOOK}${methods.get_user_deal_fields}` };
+    rp.post(
+        {
+            url: urll,
+        },
+    ).then((body) => {
+        res.status(200).send(body).end();
+    }).error((err) => {
+        console.log(err);
+        res.status(500).send({'message':err})
+    });
+};
+const setdealfields = (req, res) => {
+    const {fields} = req.body;
+    console.log(fields);
+    rp.post(
+        {
+            url: `${webhook_servers.RECEIVE_HOOK}${methods.set_deal_field}`,
+            fields:fields
+        },
+    ).then((body) => {
+        res.status(200).send(body).end();
+    }).error((err) => {
+        console.log(err);
+        res.status(500).send({'message':err})
+    });
+}
+
 module.exports = {
     getServers,
-    webhook
+    webhook,
+    dealfields,
+    setdealfields,
 }

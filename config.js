@@ -10,6 +10,8 @@ const webhook_servers = {
 
 const methods = {
     Get_users_list:"user.get.json",
+    get_user_deal_fields:"crm.deal.userfield.list.json",
+    set_deal_field:"crm.deal.userfield.add",
 }
 
 module.exports = {
