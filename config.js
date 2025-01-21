@@ -11,6 +11,7 @@ const webhook_servers = {
 const methods = {
     Get_users_list:"user.get.json",
     get_user_deal_fields:"crm.deal.userfield.list.json",
+    get_deal_id:"crm.deal.userfield.get",
     set_deal_field:"crm.deal.userfield.add",
 }
 

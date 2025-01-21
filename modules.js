@@ -74,20 +74,45 @@ const dealfields = (req, res) => {
         res.status(500).send({'message':err})
     });
 };
+
+const dealID = (req, res) => {
+    const {id} = req.body;
+    rp(`${webhook_servers.SOURCE_HOOK}${methods.get_deal_id}?ID=${id}`)
+    .then((body) => {
+        res.status(200).send(body).end();
+    }).error((err) => {
+        console.log(err);
+        res.status(500).send({'message':err})
+    });
+};
+
 const setdealfields = (req, res) => {
     const {fields} = req.body;
-    console.log(fields);
-    rp.post(
+    request.post(
+        {
+            url: `${webhook_servers.RECEIVE_HOOK}${methods.set_deal_field}`, 
+            form: {
+                "fields":fields,
+            }
+        },
+        (err, resp, body) => {
+            if(err){ res.status(500).send({'message':err}) };
+            res.status(200).send(body).end();
+        });
+
+    /* rp.post(
         {
             url: `${webhook_servers.RECEIVE_HOOK}${methods.set_deal_field}`,
-            fields:fields
+            form: {
+                "fields":fields,
+            }
         },
     ).then((body) => {
         res.status(200).send(body).end();
     }).error((err) => {
         console.log(err);
         res.status(500).send({'message':err})
-    });
+    }); */
 }
 
 module.exports = {
@@ -95,4 +120,5 @@ module.exports = {
     webhook,
     dealfields,
     setdealfields,
+    dealID,
 }

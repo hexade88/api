@@ -26,4 +26,8 @@ app.post("/setdealfields", (req, res) => {
     methods.setdealfields(req, res);
 });
 
+app.post("/dealID", (req, res) => {
+    methods.dealID(req, res);
+})
+
 app.listen(5002, () => { console.log("Server api started on port 5002"); });
