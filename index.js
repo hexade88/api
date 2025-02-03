@@ -28,6 +28,14 @@ app.post("/setdealfields", (req, res) => {
 
 app.post("/dealID", (req, res) => {
     methods.dealID(req, res);
-})
+});
+
+app.post("/getDealList", (req,res) => {  //Загрузка списка ID сделок
+    methods.getDealList(req, res);
+});
+
+app.post("/getDealIdBatch", (req,res) => {  //Пакетная загрузка сделок по id
+    methods.getDealIdBatch(req, res);
+});
 
 app.listen(5002, () => { console.log("Server api started on port 5002"); });
