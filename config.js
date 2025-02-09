@@ -16,6 +16,7 @@ const methods = {
     set_deal_field:"crm.deal.userfield.add.json",              //Добавление пользовательского поля сделки
     get_crm_deal_list: "crm.deal.list.json",                   //Список сделок
     get_crm_deal_get:"crm.deal.get.json",                      //Сделка по ID
+    set_deal_add:"crm.deal.add",                               //сохраняем сделку
 }
 
 module.exports = {

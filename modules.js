@@ -56,7 +56,7 @@ const webhook = (req, res) => {   //Список юзеров
                 "start":count,
                 "FILTER":{
                     'USER_TYPE':'employee',
-                    'ACTIVE':'true',
+                    //'ACTIVE':'true',
                 },
             }
         },
@@ -145,15 +145,13 @@ const getDealList = (req, res) => {  //Загрузка списка ID сдел
     });
 }
 
-const getDealIdBatch = (req, res) => {
-    const { deals } = req.body;
-    console.log(deals);
+const getDealIdLoad = (req, res) => {
+    const { deal } = req.body;
     rp.post(
         {
-            url: `${webhook_servers.BETCH_SOURCE_HOOK}`,
+            url: `${webhook_servers.SOURCE_HOOK}${methods.get_crm_deal_get}`,
             form: {
-                "halt":0,
-                "cmd": deals
+                "ID":deal,
             }
         },
     ).then((body) => {
@@ -177,6 +175,28 @@ const getDealIdBatch = (req, res) => {
     }) */
 }
 
+const setDealIdLoad = (req, res) => {
+    const { rezult } = req.body;
+    rp.post(
+        {
+            url: `${webhook_servers.RECEIVE_HOOK}${methods.set_deal_add}`,
+            form: 
+            {
+                'fields':rezult,
+                'params':{
+                    'REGISTER_SONET_EVENT':'N',
+                },
+            }
+        },
+    ).then((body) => {
+        res.status(200).send(body).end();
+    }).error((err) => {
+        console.log(err);
+        res.status(500).send({'message':err});
+    });
+    //res.status(200).send({}).end();
+}
+
 module.exports = {
     getServers,
     webhook,
@@ -184,5 +204,6 @@ module.exports = {
     setdealfields,
     dealID,
     getDealList,
-    getDealIdBatch,
+    getDealIdLoad,
+    setDealIdLoad,
 }
