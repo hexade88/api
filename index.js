@@ -34,7 +34,7 @@ app.post("/getDealList", (req,res) => {  //Загрузка списка ID сд
     methods.getDealList(req, res);
 });
 
-app.post("/getDealIdLoad", (req,res) => {  //Пакетная загрузка сделок по id
+app.post("/getDealIdLoad", (req,res) => {  //Загрузка сделок по id
     methods.getDealIdLoad(req, res);
 });
 

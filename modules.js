@@ -145,11 +145,14 @@ const getDealList = (req, res) => {  //Загрузка списка ID сдел
     });
 }
 
-const getDealIdLoad = (req, res) => {
-    const { deal } = req.body;
+const getDealIdLoad = (req, res) => {      //Сделка по ID
+    const { deal, source } = req.body;
+    var urll = '';
+    if(source == 0 ){ urll = `${webhook_servers.SOURCE_HOOK}${methods.get_crm_deal_get}` }
+    else { urll = `${webhook_servers.RECEIVE_HOOK}${methods.get_crm_deal_get}` };
     rp.post(
         {
-            url: `${webhook_servers.SOURCE_HOOK}${methods.get_crm_deal_get}`,
+            url: urll,
             form: {
                 "ID":deal,
             }
