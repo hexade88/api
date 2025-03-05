@@ -42,4 +42,12 @@ app.post("/setDealIdLoad", (req,res) => {
     methods.setDealIdLoad(req, res);
 });
 
+app.post("/getCompanyList", (req, res) => {
+    methods.getCompanyList(req, res);
+});
+
+app.post("/getContactList", (req, res) => {
+    methods.getContactList(req, res);
+})
+
 app.listen(5002, () => { console.log("Server api started on port 5002"); });

@@ -2,7 +2,7 @@ const { servers, webhook_servers, methods } = require("./config.js");
 const request = require('request').defaults({ rejectUnauthorized: false });
 const rp = require('request-promise').defaults({rejectUnauthorized: false});
 
-const { B24Hook, EnumCrmEntityTypeId } = require('@bitrix24/b24jssdk');
+/* const { B24Hook, EnumCrmEntityTypeId } = require('@bitrix24/b24jssdk');
 
 const $b24 = new B24Hook({
 	b24Url: "https://192.168.2.148",
@@ -11,7 +11,7 @@ const $b24 = new B24Hook({
     rejectUnauthorized: false,
     secure: false
 });
-
+ */
 const getServers = (req, res) => {
     console.log("request get_servers");
     res.status(200).send(servers).end();
@@ -200,6 +200,42 @@ const setDealIdLoad = (req, res) => {
     //res.status(200).send({}).end();
 }
 
+const getCompanyList = (req, res) => {  //Загрузка списка компаний
+    const {next} = req.body;
+    console.log("Загрузка компаний с ", next);
+    rp.post(
+        {
+            url: `${webhook_servers.WORK_RECEIVE}${methods.crm_company_list}`,
+            form: {
+                "start":next,
+            }
+        },
+    ).then((body) => {
+        res.status(200).send(body).end();
+    }).error((err) => {
+        console.log(err);
+        res.status(500).send({'message':err});
+    });
+}
+
+const getContactList = (req, res) => {  //Загрузка списка контактов
+    const {next} = req.body;
+    console.log("Загрузка контактов с ", next);
+    rp.post(
+        {
+            url: `${webhook_servers.WORK_RECEIVE}${methods.crm_contact_list}`,
+            form: {
+                "start":next,
+            }
+        },
+    ).then((body) => {
+        res.status(200).send(body).end();
+    }).error((err) => {
+        console.log(err);
+        res.status(500).send({'message':err});
+    });
+}
+
 module.exports = {
     getServers,
     webhook,
@@ -209,4 +245,6 @@ module.exports = {
     getDealList,
     getDealIdLoad,
     setDealIdLoad,
+    getCompanyList,
+    getContactList,
 }
