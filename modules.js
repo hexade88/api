@@ -205,7 +205,7 @@ const getCompanyList = (req, res) => {  //Загрузка списка комп
     console.log("Загрузка компаний с ", next);
     rp.post(
         {
-            url: `${webhook_servers.WORK_RECEIVE}${methods.crm_company_list}`,
+            url: `${webhook_servers.SOURCE_HOOK}${methods.crm_company_list}`,
             form: {
                 "start":next,
             }
@@ -223,9 +223,83 @@ const getContactList = (req, res) => {  //Загрузка списка конт
     console.log("Загрузка контактов с ", next);
     rp.post(
         {
-            url: `${webhook_servers.WORK_RECEIVE}${methods.crm_contact_list}`,
+            url: `${webhook_servers.SOURCE_HOOK}${methods.crm_contact_list}`,
             form: {
                 "start":next,
+            }
+        },
+    ).then((body) => {
+        res.status(200).send(body).end();
+    }).error((err) => {
+        console.log(err);
+        res.status(500).send({'message':err});
+    });
+}
+
+const setCompany = (req, res) => {  //Сохранение компаний
+    const { rezult } = req.body;
+    rp.post(
+        {
+            url: `${webhook_servers.RECEIVE_HOOK}${methods.crm_company_add}`,
+            form: 
+            {
+                'fields':rezult,
+                'params':{
+                    'REGISTER_SONET_EVENT':'N',
+                },
+            }
+        },
+    ).then((body) => {
+        res.status(200).send(body).end();
+    }).error((err) => {
+        console.log(err);
+        res.status(500).send({'message':err});
+    });
+}
+const getCompanyID = (req, res) => {
+    const { ID, source } = req.body;
+    var urll = '';
+    if(source == 0 ){ urll = `${webhook_servers.SOURCE_HOOK}${methods.crm_company_get}` }
+    else { urll = `${webhook_servers.RECEIVE_HOOK}${methods.crm_company_get}` };
+
+    rp.post(
+        {
+            url: urll,
+            form: {"ID":ID,}
+        },
+    ).then((body) => {
+        res.status(200).send(body).end();
+    }).error((err) => {
+        console.log(err);
+        res.status(500).send({'message':err});
+    });
+}
+
+const getContactID = (req, res) => {
+    const { ID } = req.body;
+    rp.post(
+        {
+            url: `${webhook_servers.SOURCE_HOOK}${methods.crm_contact_get}`,
+            form: {"ID":ID,}
+        },
+    ).then((body) => {
+        res.status(200).send(body).end();
+    }).error((err) => {
+        console.log(err);
+        res.status(500).send({'message':err});
+    });
+}
+const setContact = (req, res) => {  //Сохранение контакта
+    const { rezult } = req.body;
+    rp.post(
+        {
+            url: `${webhook_servers.RECEIVE_HOOK}${methods.crm_contact_add}`,
+            form: 
+            {
+                'fields':rezult,
+                'params':{
+                    'REGISTER_SONET_EVENT':'N',
+                },
             }
         },
     ).then((body) => {
@@ -247,4 +321,8 @@ module.exports = {
     setDealIdLoad,
     getCompanyList,
     getContactList,
+    setCompany,
+    getCompanyID,
+    getContactID,
+    setContact,
 }

@@ -50,4 +50,20 @@ app.post("/getContactList", (req, res) => {
     methods.getContactList(req, res);
 })
 
+app.post("/setCompany", (req, res) => {
+    methods.setCompany(req, res);
+})
+
+app.post("/getCompanyID", (req, res) => {
+    methods.getCompanyID(req, res);
+})
+
+app.post("/getContactID", (req, res) => {
+    methods.getContactID(req, res);
+})
+
+app.post("/setContact", (req, res) => {
+    methods.setContact(req, res);
+})
+
 app.listen(5002, () => { console.log("Server api started on port 5002"); });
