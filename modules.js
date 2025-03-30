@@ -27,7 +27,7 @@ const webhook = (req, res) => {   //Список юзеров
     //res.status(200).send({webhooks:"sdjkl sd65f 65s"}).end();
     const {source, count } = req.body;
     var urll = '';
-    if(source == 0 ){ urll = `${webhook_servers.SOURCE_HOOK}${methods.Get_users_list}` }
+    if(source == 0 ){ urll = `${webhook_servers.WORK_RECEIVE}${methods.Get_users_list}` }
     else { urll = `${webhook_servers.RECEIVE_HOOK}${methods.Get_users_list}` };
     /* request.post(
         {
@@ -71,7 +71,7 @@ const webhook = (req, res) => {   //Список юзеров
 const dealfields = (req, res) => {  //Пользовательские поля сделки
     const {source} = req.body;
     var urll = '';
-    if(source == 0 ){ urll = `${webhook_servers.SOURCE_HOOK}${methods.get_user_deal_fields}` }
+    if(source == 0 ){ urll = `${webhook_servers.WORK_RECEIVE}${methods.get_user_deal_fields}` }
     else { urll = `${webhook_servers.RECEIVE_HOOK}${methods.get_user_deal_fields}` };
     rp.post(
         {
@@ -87,7 +87,7 @@ const dealfields = (req, res) => {  //Пользовательские поля 
 
 const dealID = (req, res) => {   //пользовательские поля
     const {id} = req.body;
-    rp(`${webhook_servers.SOURCE_HOOK}${methods.get_deal_id}?ID=${id}`)
+    rp(`${webhook_servers.WORK_RECEIVE}${methods.get_deal_id}?ID=${id}`)
     .then((body) => {
         res.status(200).send(body).end();
     }).error((err) => {
@@ -130,7 +130,7 @@ const getDealList = (req, res) => {  //Загрузка списка ID сдел
     console.log("Загрузка сделок с ", next);
     rp.post(
         {
-            url: `${webhook_servers.SOURCE_HOOK}${methods.get_crm_deal_list}`,
+            url: `${webhook_servers.WORK_RECEIVE}${methods.get_crm_deal_list}`,
             form: {
                 "SELECT":["ID", "TITLE", "DATE_CREATE"],
                 "FILTER":{">=DATE_CREATE":"2024-01-01T00:00:00"},
@@ -148,7 +148,7 @@ const getDealList = (req, res) => {  //Загрузка списка ID сдел
 const getDealIdLoad = (req, res) => {      //Сделка по ID
     const { deal, source } = req.body;
     var urll = '';
-    if(source == 0 ){ urll = `${webhook_servers.SOURCE_HOOK}${methods.get_crm_deal_get}` }
+    if(source == 0 ){ urll = `${webhook_servers.WORK_RECEIVE}${methods.get_crm_deal_get}` }
     else { urll = `${webhook_servers.RECEIVE_HOOK}${methods.get_crm_deal_get}` };
     rp.post(
         {
@@ -205,7 +205,7 @@ const getCompanyList = (req, res) => {  //Загрузка списка комп
     console.log("Загрузка компаний с ", next);
     rp.post(
         {
-            url: `${webhook_servers.SOURCE_HOOK}${methods.crm_company_list}`,
+            url: `${webhook_servers.WORK_RECEIVE}${methods.crm_company_list}`,
             form: {
                 "start":next,
             }
@@ -223,7 +223,7 @@ const getContactList = (req, res) => {  //Загрузка списка конт
     console.log("Загрузка контактов с ", next);
     rp.post(
         {
-            url: `${webhook_servers.SOURCE_HOOK}${methods.crm_contact_list}`,
+            url: `${webhook_servers.WORK_RECEIVE}${methods.crm_contact_list}`,
             form: {
                 "start":next,
             }
@@ -259,7 +259,7 @@ const setCompany = (req, res) => {  //Сохранение компаний
 const getCompanyID = (req, res) => {
     const { ID, source } = req.body;
     var urll = '';
-    if(source == 0 ){ urll = `${webhook_servers.SOURCE_HOOK}${methods.crm_company_get}` }
+    if(source == 0 ){ urll = `${webhook_servers.WORK_RECEIVE}${methods.crm_company_get}` }
     else { urll = `${webhook_servers.RECEIVE_HOOK}${methods.crm_company_get}` };
 
     rp.post(
@@ -279,7 +279,7 @@ const getContactID = (req, res) => {
     const { ID } = req.body;
     rp.post(
         {
-            url: `${webhook_servers.SOURCE_HOOK}${methods.crm_contact_get}`,
+            url: `${webhook_servers.WORK_RECEIVE}${methods.crm_contact_get}`,
             form: {"ID":ID,}
         },
     ).then((body) => {
