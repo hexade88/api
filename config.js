@@ -24,6 +24,7 @@ const methods = {
     crm_company_get:"crm.company.get",                          //запрос компании по id с юзер-полями
     crm_contact_get:"crm.contact.get",                          //контакты по id 
     crm_contact_add:"crm.contact.add",                          //Добавляем контакт
+    crm_deal_update:"crm.deal.update",                          //Обновить сделку
 }
 
 module.exports = {

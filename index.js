@@ -66,4 +66,12 @@ app.post("/setContact", (req, res) => {
     methods.setContact(req, res);
 })
 
+app.post("/updDealIdLoad", (req, res) => {
+    methods.updDealIdLoad(req, res);
+})
+
+app.post("/getAllDealNewBX", (req, res) => {
+    methods.getAllDealNewBX(req, res);
+})
+
 app.listen(5002, () => { console.log("Server api started on port 5002"); });

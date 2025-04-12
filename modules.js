@@ -145,6 +145,25 @@ const getDealList = (req, res) => {  //Загрузка списка ID сдел
     });
 }
 
+const getAllDealNewBX = (req, res) => {  //Загрузка списка ID сделок
+    const {next} = req.body;
+    console.log("Загрузка сделок с ", next);
+    rp.post(
+        {
+            url: `${webhook_servers.RECEIVE_HOOK}${methods.get_crm_deal_list}`,
+            form: {
+                "SELECT":['*', 'UF_*'],
+                "start":next,
+            }
+        },
+    ).then((body) => {
+        res.status(200).send(body).end();
+    }).error((err) => {
+        console.log(err);
+        res.status(500).send({'message':err});
+    });
+}
+
 const getDealIdLoad = (req, res) => {      //Сделка по ID
     const { deal, source } = req.body;
     var urll = '';
@@ -176,7 +195,24 @@ const getDealIdLoad = (req, res) => {      //Сделка по ID
         console.log(err);
         res.status(500).send({'message':err});
     }) */
-}
+};
+const updDealIdLoad = (req, res) => {
+    const {deal, rezult } = req.body;
+    rp.post(
+        {
+            url: `${webhook_servers.RECEIVE_HOOK}${methods.crm_deal_update}`,
+            form: {
+                "ID":deal,
+                'fields':rezult,
+            }
+        },
+    ).then((body) => {
+        res.status(200).send(body).end();
+    }).error((err) => {
+        console.log(err);
+        res.status(500).send({'message':err});
+    });
+};
 
 const setDealIdLoad = (req, res) => {
     const { rezult } = req.body;
@@ -325,4 +361,6 @@ module.exports = {
     getCompanyID,
     getContactID,
     setContact,
+    updDealIdLoad,
+    getAllDealNewBX,
 }
