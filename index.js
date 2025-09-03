@@ -52,6 +52,7 @@ app.post("/getContactList", (req, res) => {
 
 app.post("/BiToBi", (req, res) => {
     methods.bitobi(req, res);
+})
     
 app.post("/setCompany", (req, res) => {
     methods.setCompany(req, res);
