@@ -236,6 +236,29 @@ const getContactList = (req, res) => {  //Загрузка списка конт
     });
 }
 
+const bitobi = (req, res) => {
+
+    /* const { deal, source } = req.body;
+    var urll = '';
+    if(source == 0 ){ urll = `${webhook_servers.SOURCE_HOOK}${methods.get_crm_deal_get}` }
+    else { urll = `${webhook_servers.RECEIVE_HOOK}${methods.get_crm_deal_get}` };
+    rp.post(
+        {
+            url: urll,
+            form: {
+                "ID":deal,
+            }
+        },
+    ).then((body) => {
+        res.status(200).send(body).end();
+    }).error((err) => {
+        console.log(err);
+        res.status(500).send({'message':err});
+    }); */
+
+    res.status(200).send(req.body).end();
+}
+
 module.exports = {
     getServers,
     webhook,

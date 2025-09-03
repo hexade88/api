@@ -1,13 +1,15 @@
 const servers = {
     SOURCE_IP:'192.168.1.149',
-    RECEIVE_IP:'192.168.2.148'
+    RECEIVE_IP:'192.168.0.148'
 };
 
 const webhook_servers = {
     SOURCE_HOOK:"https://192.168.1.149/rest/3173/v0r3yhxaxew41rj6/",
-    RECEIVE_HOOK:"https://192.168.2.148/rest/1/entkpy1xf5i625l5/",
+    RECEIVE_HOOK:"https://192.168.0.148/rest/1/entkpy1xf5i625l5/",
     BETCH_SOURCE_HOOK: "https://192.168.1.149/rest/3173/v0r3yhxaxew41rj6/batch.json",
     WORK_RECEIVE:"https://bitrix24.avtomatika.kz/rest/3173/i6214lf2krgwfymr/",
+
+    BITOBI: "http://192.168.0.148/crm/configs/import/BitrixToBitrix.php",
 };
 
 const methods = {

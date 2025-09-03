@@ -50,4 +50,8 @@ app.post("/getContactList", (req, res) => {
     methods.getContactList(req, res);
 })
 
+app.post("/BiToBi", (req, res) => {
+    methods.bitobi(req, res);
+})
+
 app.listen(5002, () => { console.log("Server api started on port 5002"); });
