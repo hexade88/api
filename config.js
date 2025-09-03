@@ -21,7 +21,12 @@ const methods = {
     get_crm_deal_get:"crm.deal.get.json",                      //Сделка по ID
     set_deal_add:"crm.deal.add",                               //сохраняем сделку
     crm_company_list:"crm.company.list",                        //Список компаний
-    crm_contact_list:"crm.contact.list"                         //Список контактов
+    crm_contact_list:"crm.contact.list",                        //Список контактов
+    crm_company_add:"crm.company.add",                          //Создание компании
+    crm_company_get:"crm.company.get",                          //запрос компании по id с юзер-полями
+    crm_contact_get:"crm.contact.get",                          //контакты по id 
+    crm_contact_add:"crm.contact.add",                          //Добавляем контакт
+    crm_deal_update:"crm.deal.update",                          //Обновить сделку
 }
 
 module.exports = {

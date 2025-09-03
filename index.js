@@ -52,6 +52,29 @@ app.post("/getContactList", (req, res) => {
 
 app.post("/BiToBi", (req, res) => {
     methods.bitobi(req, res);
+    
+app.post("/setCompany", (req, res) => {
+    methods.setCompany(req, res);
+})
+
+app.post("/getCompanyID", (req, res) => {
+    methods.getCompanyID(req, res);
+})
+
+app.post("/getContactID", (req, res) => {
+    methods.getContactID(req, res);
+})
+
+app.post("/setContact", (req, res) => {
+    methods.setContact(req, res);
+})
+
+app.post("/updDealIdLoad", (req, res) => {
+    methods.updDealIdLoad(req, res);
+})
+
+app.post("/getAllDealNewBX", (req, res) => {
+    methods.getAllDealNewBX(req, res);
 })
 
 app.listen(5002, () => { console.log("Server api started on port 5002"); });
