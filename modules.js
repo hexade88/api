@@ -347,7 +347,7 @@ const setdealfields = (req, res) => {  //Добавление пользоват
     }
     
     const bitobi = (req, res) => {
-        res.status(200).send("OK!").end();
+        res.status(200).send(req.body).end();
     }
     
     module.exports = {
