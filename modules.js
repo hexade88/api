@@ -347,6 +347,32 @@ const setdealfields = (req, res) => {  //Добавление пользоват
     }
     
     const bitobi = (req, res) => {
+        const { event, data } = req.body
+
+        rp.post(
+            {
+                url: `${webhook_servers.WORK_RECEIVE}${methods.get_crm_deal_get}`,
+                form: {
+                    "ID":data.FIELDS.ID,
+                }
+            }
+        ).then((rez) => {
+
+            rp.post(
+                {
+                    url: webhook_servers.BITOBI,
+                    form:{
+                        "params": rez,
+                    }
+                }
+            )
+
+            res.status(200).send("Ok!").end();
+        }).error((err) => {
+            console.log(err);
+            res.status(500).send({'message':err});
+        });
+
         res.status(200).send(req.body).end();
     }
     
