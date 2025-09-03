@@ -346,8 +346,8 @@ const setdealfields = (req, res) => {  //Добавление пользоват
         });
     }
     
-    const BiToBi = (req, res) => {
-        res.status(200).send(req.body).end();
+    const bitobi = (req, res) => {
+        res.status(200).send("OK!").end();
     }
     
     module.exports = {
@@ -367,5 +367,5 @@ const setdealfields = (req, res) => {  //Добавление пользоват
         setContact,
         updDealIdLoad,
         getAllDealNewBX,
-        BiToBi,
+        bitobi,
     }
