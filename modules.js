@@ -347,9 +347,9 @@ const setdealfields = (req, res) => {  //Добавление пользоват
     }
     
     const bitobi = (req, res) => {
-        const { event, data } = req.body
+        //const { event, data } = req.body
 
-        rp.post(
+        /* rp.post(
             {
                 url: `${webhook_servers.WORK_RECEIVE}${methods.get_crm_deal_get}`,
                 form: {
@@ -367,13 +367,13 @@ const setdealfields = (req, res) => {  //Добавление пользоват
                 }
             )
 
-            res.status(200).send("Ok!").end();
+            res.status(200).send(rez).end();
         }).error((err) => {
             console.log(err);
             res.status(500).send({'message':err});
-        });
-
-        res.status(200).send(req.body).end();
+        }); */
+        console.log(req.body);
+        res.status(200).send('Ok!').end();
     }
     
     module.exports = {
