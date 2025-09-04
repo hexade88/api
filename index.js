@@ -3,6 +3,7 @@ const bodyparser = require('body-parser');
 const methods = require("./modules.js");
 
 const app = express();
+app.use(express.json());
 
 const cors = require('cors');
 app.use(cors({ credentials: true }));
