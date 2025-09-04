@@ -355,7 +355,7 @@ const setdealfields = (req, res) => {  //Добавление пользоват
                     "ID":req.query.deal,
                 }
             }
-        ).then(() => {
+        ).then((rez) => {
 
             rp.post(
                 {
