@@ -8,7 +8,7 @@ const cors = require('cors');
 app.use(cors({ credentials: true }));
 
 app.use((req, res, next) => {
-    consolele.log(req);
+    console.log(req);
     next();
 });
 
