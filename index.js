@@ -8,7 +8,7 @@ const cors = require('cors');
 app.use(cors({ credentials: true }));
 
 //app.use(bodyparser.urlencoded({ extended: true }));
-app.use(express.json());
+app.use(bodyparser.json());
 
 app.get("/get_servers", (req, res) => { 
     methods.getServers(req, res); 
@@ -50,7 +50,7 @@ app.post("/getContactList", (req, res) => {
     methods.getContactList(req, res);
 })
 
-app.post("/bitobi", (req, res) => {
+app.get("/bitobi", (req, res) => {
     methods.bitobi(req, res);
 })
     
