@@ -355,7 +355,7 @@ const setdealfields = (req, res) => {  //Добавление пользоват
                     "ID":req.query.deal,
                 }
             }
-        ).then((rez) => {
+        ).then(() => {
 
             rp.post(
                 {
@@ -366,13 +366,12 @@ const setdealfields = (req, res) => {  //Добавление пользоват
                 }
             )
 
-            res.status(200).send(rez).end();
+            res.status(200).send().end();
         }).error((err) => {
             console.log(err);
             res.status(500).send({'message':err});
         });
         console.log("Deal = " + req.query.deal);
-        res.status(200).send('Ok!').end();
     }
     
     module.exports = {
