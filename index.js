@@ -7,6 +7,11 @@ const app = express();
 const cors = require('cors');
 app.use(cors({ credentials: true }));
 
+app.use((req, res, next) => {
+    consolele.log(req);
+    next();
+});
+
 //app.use(bodyparser.urlencoded({ extended: true }));
 app.use(bodyparser.json());
 
@@ -51,10 +56,6 @@ app.post("/getContactList", (req, res) => {
 })
 
 app.post("/bitobi", (req, res) => {
-    methods.bitobi(req, res);
-})
-
-app.get("/bitobi", (req, res) => {
     methods.bitobi(req, res);
 })
     
