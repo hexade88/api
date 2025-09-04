@@ -372,7 +372,7 @@ const setdealfields = (req, res) => {  //Добавление пользоват
             console.log(err);
             res.status(500).send({'message':err});
         }); */
-        console.log(req.body);
+        console.log(req);
         res.status(200).send('Ok!').end();
     }
     
