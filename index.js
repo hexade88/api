@@ -50,7 +50,11 @@ app.post("/getContactList", (req, res) => {
     methods.getContactList(req, res);
 })
 
-app.post("/BiToBi", (req, res) => {
+app.post("/bitobi", (req, res) => {
+    methods.bitobi(req, res);
+})
+
+app.get("/bitobi", (req, res) => {
     methods.bitobi(req, res);
 })
     
