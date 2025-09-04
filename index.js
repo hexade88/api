@@ -7,13 +7,13 @@ const app = express();
 const cors = require('cors');
 app.use(cors({ credentials: true }));
 
+//app.use(bodyparser.urlencoded({ extended: true }));
+app.use(bodyparser.json());
+
 app.use((req, res, next) => {
     console.log(req);
     next();
 });
-
-//app.use(bodyparser.urlencoded({ extended: true }));
-app.use(bodyparser.json());
 
 app.get("/get_servers", (req, res) => { 
     methods.getServers(req, res); 
